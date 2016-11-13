@@ -1,3 +1,3 @@
-# Telegram Echo Bot
+# Telegram Amazon Affiliate BOT
 
-This is a sample Telegram Bot written in PHP running on Heroku
+This is a bot that eat amazon link and reply with a link set up with an affiliation

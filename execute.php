@@ -79,7 +79,7 @@ function clean_for_URL($string){
 	if(strcmp($cleaned_string,"false") === 0){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
 	//$cleaned_string = strstr($string, 'http://');
 	//if($cleaned_string == "false"){strstr($string, 'https://')}
-	return $cleaned_string." ".$cleaned_string;
+	return $cleaned_string;
 }
 /*
 function test_link($url){

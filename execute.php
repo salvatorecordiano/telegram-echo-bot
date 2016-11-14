@@ -74,9 +74,9 @@ function set_referral_URL($url){
 }
 
 function clean_for_URL($string){
-	$cleaned_string = "";
+	//$cleaned_string = "";
 	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
-	if($cleaned_string == ""){ explode(' ',strstr($string,'http://'))[0]; }
+	if(is_null($cleaned_string)){ explode(' ',strstr($string,'http://'))[0]; }
 	return $cleaned_string;
 }
 /*

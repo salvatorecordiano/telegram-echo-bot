@@ -75,11 +75,11 @@ function set_referral_URL($url){
 
 function clean_for_URL($string){
 	//$cleaned_string = "";
-	$cleaned_string = explode(' ',strstr($string,'http://'))[0];
-	if(strcmp($cleaned_string,"false") === 0){ $cleaned_string = explode(' ',strstr($string,'https://'))[0]; }
+	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
+	if(strcmp($cleaned_string,"false") === 0){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
 	//$cleaned_string = strstr($string, 'http://');
 	//if($cleaned_string == "false"){strstr($string, 'https://')}
-	return $cleaned_string;
+	return $cleaned_string." ".$cleaned_string;
 }
 /*
 function test_link($url){

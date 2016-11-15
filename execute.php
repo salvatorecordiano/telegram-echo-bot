@@ -64,18 +64,13 @@ function set_referral_URL($url){
 	$referral = "miketama-21";
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
-	//$path = explode('/', $parsed_url_array['path']);
-	//$key = array_search('dp', $path);
+	
 	$seller = strstr($parsed_url_array['query'], 'm=');
 	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
-	
-	//if($key==''){ $key = array_search('d', $path); /*se non c'è dp cerca d*/ }
-	
-	//$ASIN = $path[$key+1];
+
 	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral.$seller;
-	//$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
 	return $url_edited;
 }
 

@@ -67,7 +67,9 @@ function set_referral_URL($url){
 	$path = explode('/', $parsed_url_array['path']);
 	$key = array_search('dp', $path);
 	$seller = "&".$parsed_url_array['query'];
-	if($key=='')
+	$key == '' ? $key = array_search('d', $path) : '';
+	$key == '' ? $key = array_search('product', $path) : '';
+	/*if($key=='')
 	{
 		$key = array_search('d', $path); //se non c'è dp cerca d
 		$key == '' ? true : false;
@@ -75,10 +77,10 @@ function set_referral_URL($url){
 	if($key)
 	{
 		$key = array_search('product', $path); //se non c'è d cerca product
-	}
+	}*/
 	
 	$ASIN = $path[$key+1];
-	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
+	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller."\npath[".$key."]:".print_r($path);
 	return $url_edited;
 }
 

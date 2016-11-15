@@ -21,8 +21,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 $text = trim($text);
 //$text = strtolower($text);
 $array1 = array();
-$key = "";
-$ASIN = "";
+
 		
 // gestisco la richiesta
 $response = "";

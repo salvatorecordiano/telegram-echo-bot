@@ -64,17 +64,18 @@ function set_referral_URL($url){
 	$referral = "miketama-21";
 	$url_edited = "";
 	$parsed_url_array = parse_url($url);
-	$path = explode('/', $parsed_url_array['path']);
-	$key = array_search('dp', $path);
+	//$path = explode('/', $parsed_url_array['path']);
+	//$key = array_search('dp', $path);
 	$seller = strstr($parsed_url_array['query'], 'm=');
-	$fullstring = 'this is my [tag]dog[/tag]';
+	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
 	
-	if($key==''){ $key = array_search('d', $path); /*se non c'è dp cerca d*/ }
+	//if($key==''){ $key = array_search('d', $path); /*se non c'è dp cerca d*/ }
 	
-	$ASIN = $path[$key+1];
-	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
+	//$ASIN = $path[$key+1];
+	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral.$seller;
+	//$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
 	return $url_edited;
 }
 
@@ -104,44 +105,7 @@ function extract_unit($string, $start, $end){
 	$unit = trim($str_three); // remove whitespaces
 	return $unit;
 }
-/*
-function test_link($url){
-	$url_to_test = clean_for_URL($url); //pulisco url
-	$url_array = parse_url($url); //parse url
-	$url_host = explode('.', $url_array['host']);
-	$url_path = $url_array['path']);
-	
-	if(strcmp($url_host[0],"www"))
-	{ 
-		//è un link
-		if(strcmp($url_host[1],"amazon")
-		{
-			//è un link amazon
-			if(is_null($url_path))
-			{
-				//link alla home
-				$response_link="http://amzn.to/2f8aTvW";
-			}
-			else
-			{
-				//link con path
-				
-				$response_link= set_referral_URL($url_to_test);
-			}
-		}
-		else
-		{
-			//non è un link amazon
-			$response_link="Non è un link amazon";
-		}
-	}
-	else
-	{
-		//non è un link
-		$response_link="Non è un link";
-	}
-	return $response_link;
-}*/
+
 header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";

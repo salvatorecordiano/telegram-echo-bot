@@ -87,29 +87,22 @@ function clean_for_URL($string){
 	return $cleaned_string;
 }
 function get_string_between($string, $start, $end){
-    $string = ' ' . $string;
-    $ini = strpos($string, $start);
-    if ($ini == 0) return '';
-    $ini += strlen($start);
-    $len = strpos($string, $end, $ini) - $ini;
-    return substr($string, $ini, $len);
+	$string = ' ' . $string;
+	$ini = strpos($string, $start);
+	if ($ini == 0) return '';
+	$ini += strlen($start);
+	$len = strpos($string, $end, $ini) - $ini;
+	return substr($string, $ini, $len);
 }
  
-function extract_unit($string, $start, $end)
-{
-$pos = stripos($string, $start);
- 
-$str = substr($string, $pos);
- 
-$str_two = substr($str, strlen($start));
- 
-$second_pos = stripos($str_two, $end);
- 
-$str_three = substr($str_two, 0, $second_pos);
- 
-$unit = trim($str_three); // remove whitespaces
- 
-return $unit;
+function extract_unit($string, $start, $end){
+	$pos = stripos($string, $start);
+	$str = substr($string, $pos);
+	$str_two = substr($str, strlen($start));
+	$second_pos = stripos($str_two, $end);
+	$str_three = substr($str_two, 0, $second_pos);
+	$unit = trim($str_three); // remove whitespaces
+	return $unit;
 }
 /*
 function test_link($url){

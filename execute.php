@@ -69,7 +69,7 @@ function set_referral_URL($url){
 	$seller = strstr($parsed_url_array['query'], 'm=');
 	$fullstring = 'this is my [tag]dog[/tag]';
 	$parsed = get_string_between($fullstring, 'm=', '&');
-	$seller = "&m=".$seller;
+	$seller = "&".$seller;
 	
 	if($key==''){ $key = array_search('d', $path); /*se non c'è dp cerca d*/ }
 	

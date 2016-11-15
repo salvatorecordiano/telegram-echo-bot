@@ -70,12 +70,13 @@ function set_referral_URL($url){
 	if($key=='')
 	{
 		$key = array_search('d', $path); //se non c'è dp cerca d
-		$key == '' ? true : false
+		$key == '' ? true : false;
 	}
 	if($key)
 	{
 		$key = array_search('product', $path); //se non c'è d cerca product
 	}
+	
 	$ASIN = $path[$key+1];
 	$url_edited = "https://www.amazon.it/dp/".$ASIN."?tag=".$referral.$seller;
 	return $url_edited;

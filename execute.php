@@ -68,7 +68,7 @@ function set_referral_URL($url){
 	$key = array_search('dp', $path);
 	$seller = strstr($parsed_url_array['query'], 'm=');
 	$fullstring = 'this is my [tag]dog[/tag]';
-	$parsed = get_string_between($fullstring, 'm=', '&');
+	$parsed = extract_unit($fullstring, 'm=', '&');
 	$seller = "&".$seller;
 	
 	if($key==''){ $key = array_search('d', $path); /*se non c'è dp cerca d*/ }
@@ -93,6 +93,23 @@ function get_string_between($string, $start, $end){
     $ini += strlen($start);
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
+}
+ 
+function extract_unit($string, $start, $end)
+{
+$pos = stripos($string, $start);
+ 
+$str = substr($string, $pos);
+ 
+$str_two = substr($str, strlen($start));
+ 
+$second_pos = stripos($str_two, $end);
+ 
+$str_three = substr($str_two, 0, $second_pos);
+ 
+$unit = trim($str_three); // remove whitespaces
+ 
+return $unit;
 }
 /*
 function test_link($url){

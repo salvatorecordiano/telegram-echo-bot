@@ -30,7 +30,7 @@ if(isset($message['text']))
 {
   //NUOVO PARSER:
   $text_url_array = parse_text($text);
-  $array1 = explode('.', $text_clean);
+  $array1 = explode('.', $text_url_array[1]);
   $dominio = $array1[1];
 
   if(strpos($text, "/start") === 0 )

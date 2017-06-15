@@ -82,6 +82,10 @@ function set_referral_URL($url){
 	$url_edited = "https://www.amazon.it".$parsed_url_array['path']."?tag=".$referral.$seller;
 	return $url_edited;
 }
+/*
+*
+* crea il link con referral di gearbest 
+*/
 function set_referral_URL_GB($url){
 	$referral = "10851947";
 	$url_edited = "";

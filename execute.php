@@ -32,7 +32,9 @@ if(isset($message['text']))
   $text_url_array = parse_text($text);
   $array1 = explode('.', $text_url_array[1]);
   $dominio = $array1[1];
-
+  //test
+  $string_test = var_export($array1, true);
+	
   if(strpos($text, "/start") === 0 )
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone!";
@@ -47,8 +49,6 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	
-	$string_test = var_export($array1, true);
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate \n $string_test";
 	
   }

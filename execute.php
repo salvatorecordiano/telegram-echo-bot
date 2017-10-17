@@ -32,8 +32,7 @@ if(isset($message['text']))
   $text_url_array = parse_text($text);
   $array1 = explode('.', $text_url_array[1]);
   $dominio = $array1[1];
-  //test
-  $string_test = var_export($array1, true);
+  //test url $string_test = var_export($array1, true);
 	
   if(strpos($text, "/start") === 0 )
   {
@@ -49,7 +48,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate \n $string_test";
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
   }
    elseif(strcmp($dominio,"gearbest") === 0)

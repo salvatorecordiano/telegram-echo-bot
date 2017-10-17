@@ -51,6 +51,7 @@ if(isset($message['text']))
 	
   }
    elseif(strcmp($dominio,"gearbest") === 0)
+   {
 	$url_to_parse = $text_url_array[1];
 	$url_affiliate = set_referral_URL_GB($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE0A"');
@@ -59,7 +60,7 @@ if(isset($message['text']))
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
-  {
+  
    }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
   {

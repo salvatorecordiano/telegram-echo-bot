@@ -107,7 +107,7 @@ function set_referral_URL_GB($url){
 //nuovo parser
 function parse_text($string){
 	$string2 = str_replace("/link", "", $string);
-	preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', $string2, $match);
+	preg_match_all('%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i', $string2, $match);
 	$text_parsed_URL = $match[0][0];
 	$arr = explode("http", $string2);
 	$text_parsed_TEXT = $arr[0];

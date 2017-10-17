@@ -96,7 +96,7 @@ function set_referral_URL_GB($url){
 	
 	$parsed = extract_unit($fullstring, 'm=', '&');
 	//$seller = "&".$seller;
-	$url_edited = "http://www.gearbest.com".$parsed_url_array['path']."?lkid="/*.$referral.$seller*/;
+	$url_edited = "http://www.gearbest.com".$parsed_url_array['path']."?lkid=".$referral.$seller;
 	return $url_edited;
 }
 //nuovo parser

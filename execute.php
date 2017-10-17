@@ -68,6 +68,9 @@ if(isset($message['text']))
   {
 	   //$response = "Incolla l'URL Amazon da convertire dopo il comando /link";
    }
+  else {
+	  $response = "$string_test";
+  }
 }
 /*
 *

@@ -47,7 +47,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate \n $array1";
 	
   }
    elseif(strcmp($dominio,"gearbest") === 0)

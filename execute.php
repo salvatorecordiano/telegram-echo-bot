@@ -18,7 +18,7 @@ $username = isset($message['chat']['username']) ? $message['chat']['username'] :
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
-$text = trim($text);
+//$text = trim($text);
 //$text = strtolower($text);
 $array1 = array();
 

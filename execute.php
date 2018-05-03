@@ -56,8 +56,9 @@ if(isset($message['text']))
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
+	$ticksym = json_decode('"\uD83C\u2714"');
 	$obj_desc = $testoLink;
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$response = "$ticksym $obj_desc $url_affiliate"
 	
   }
    elseif($dominioGearbest == "gearbest")
@@ -68,8 +69,9 @@ if(isset($message['text']))
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
+	$ticksym = json_decode('"\uD83C\u2714"');
 	$obj_desc = $testoLink;
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$response = "$ticksym $obj_desc $url_affiliate";
   
    }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
@@ -171,9 +173,6 @@ function get_string_between($string, $start, $end){
 */
 
 header("Content-Type: application/json");
-$parameters1 = array('chat_id' => $chatId, "text" => $response);
-$parameters1["method"] = "sendMessage";
-echo json_encode($parameters1);
 $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
 echo json_encode($parameters);

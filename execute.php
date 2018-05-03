@@ -58,7 +58,7 @@ if(isset($message['text']))
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $testoLink;
 	$short = make_bitly_url($url_affiliate,'ghir0','json');
-	$response = "$obj_desc\n$worldsym  $url_affiliate . $short";
+	$response = "$obj_desc\n$worldsym $short";
 	
   }
    elseif($dominioGearbest == "gearbest")
@@ -70,7 +70,8 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $testoLink;
-	$response = "$obj_desc\n$worldsym  $url_affiliate";
+	$short = make_bitly_url($url_affiliate,'ghir0','json');
+	$response = "$obj_desc\n$worldsym  $short";
   
    }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )

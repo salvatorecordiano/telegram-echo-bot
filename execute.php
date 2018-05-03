@@ -18,7 +18,7 @@ $username = isset($message['chat']['username']) ? $message['chat']['username'] :
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
-//$text = trim($text);
+$text = trim($text);
 //$text = strtolower($text);
 $array1 = array();
 
@@ -28,39 +28,48 @@ $response = "";
 
 if(isset($message['text']))
 {
+  $arr = explode("http", $text, 2);
+  $testoLink = $arr[0];
+  
+  $dominioAmazon = get_string_between($text, "://www.", ".it");
+  $dominioGearbest = get_string_between($text, "://www.", ".com");
+	
   //NUOVO PARSER:
-  $text_url_array = parse_text($text);
-  $array1 = explode('.', $text_url_array[1]);
-  $dominio = $array1[1];
+  //$text_url_array = parse_text($text);
+  
+  $text_url_array = getUrls($text);
+	
+  //$array1 = explode('.', $text_url_array[1]);
+  //$dominio = $array1[1];
   //test url $string_test = var_export($array1, true);
 	
   if(strpos($text, "/start") === 0 )
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone! Grazie mille!\n\nCreated by http://www.webemento.com";
   }
-  elseif(strcmp($dominio,"amazon") === 0)
+  elseif($dominioAmazon == "amazon")
   {	  
 	//new parser:
-	$url_to_parse = $text_url_array[1];
+	$url_to_parse = $text_url_array[0];
 	$url_affiliate = set_referral_URL($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE0A"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
-	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$obj_desc = $testoLink;
+	$response = "$obj_desc $url_affiliate"
 	
   }
-   elseif(strcmp($dominio,"gearbest") === 0)
+   elseif($dominioGearbest == "gearbest")
    {
-	$url_to_parse = $text_url_array[1];
+	$url_to_parse = $text_url_array[0];
 	$url_affiliate = set_referral_URL_GB($url_to_parse);
 	$faccinasym = json_decode('"\uD83D\uDE0A"');
 	$linksym =  json_decode('"\uD83D\uDD17"');
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
-	$obj_desc = $text_url_array[0];
-	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
+	$obj_desc = $testoLink;
+	$response = "$obj_desc $url_affiliate";
   
    }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )
@@ -103,6 +112,13 @@ function set_referral_URL_GB($url){
 	$url_edited = "http://www.gearbest.com".$parsed_url_array['path']."?lkid=".$referral.$seller;
 	return $url_edited;
 }
+
+function getUrls($string) {
+ $regex = '/https?\:\/\/[^\" ]+/i';
+ preg_match_all($regex, $string, $matches);
+ return ($matches[0]);
+}
+
 //nuovo parser
 function parse_text($string){
 	$string2 = str_replace("/link", "", $string);
@@ -123,15 +139,31 @@ function extract_unit($string, $start, $end){
 	$unit = trim($str_three); // remove whitespaces
 	return $unit;
 }
-/*function get_string_between($string, $start, $end){
-	$string = ' ' . $string;
-	$ini = strpos($string, $start);
-	if ($ini == 0) return '';
-	$ini += strlen($start);
-	$len = strpos($string, $end, $ini) - $ini;
-	return substr($string, $ini, $len);
+function strbefore($string, $substring) {
+  $pos = strpos($string, $substring);
+  if ($pos === false)
+   return $string;
+  else  
+   return(substr($string, 0, $pos));
 }
-function clean_for_URL($string){
+function strafter($string, $substring) {
+  $pos = strpos($string, $substring);
+  if ($pos === false)
+   return $string;
+  else  
+   return(substr($string, $pos+strlen($substring)));
+}
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+ 
+/*function clean_for_URL($string){
 	$cleaned_string = explode(' ',strstr($string,'https://'))[0];
 	if(strcmp($cleaned_string,"false") == "0"){ $cleaned_string = explode(' ',strstr($string,'http://'))[0]; }
 	return $cleaned_string;

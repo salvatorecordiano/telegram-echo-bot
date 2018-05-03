@@ -36,7 +36,7 @@ if(isset($message['text']))
 	
   if(strpos($text, "/start") === 0 )
   {
-	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone! Grazie mille!\n\nby http://www.webemento.com";
+	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone! Grazie mille!\n\nCreated by http://www.webemento.com";
   }
   elseif(strcmp($dominio,"amazon") === 0)
   {	  

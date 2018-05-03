@@ -31,8 +31,8 @@ if(isset($message['text']))
   $arr = explode("http", $text, 2);
   $testoLink = $arr[0];
   
-  $dominioAmazon = get_string_between($text, "://", ".it");
-  $dominioGearbest = get_string_between($text, "://", ".com");
+  $dominioAmazon = get_string_between($text, "://www.", ".it");
+  $dominioGearbest = get_string_between($text, "://www.", ".com");
 	
   //NUOVO PARSER:
   $text_url_array = parse_text($text);
@@ -45,7 +45,7 @@ if(isset($message['text']))
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone! Grazie mille!\n\nCreated by http://www.webemento.com";
   }
-  elseif(!empty($dominioAmazon))
+  elseif($dominioAmazon == "amazon")
   {	  
 	//new parser:
 	$url_to_parse = $text_url_array[1];
@@ -58,7 +58,7 @@ if(isset($message['text']))
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate . DominioA: $dominioAmazon";
 	
   }
-   elseif(!empty($dominioGearbest))
+   elseif($dominioGearbest == "gearbest")
    {
 	$url_to_parse = $text_url_array[1];
 	$url_affiliate = set_referral_URL_GB($url_to_parse);

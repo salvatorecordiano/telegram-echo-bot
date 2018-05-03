@@ -18,7 +18,7 @@ $username = isset($message['chat']['username']) ? $message['chat']['username'] :
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 // pulisco il messaggio ricevuto togliendo eventuali spazi prima e dopo il testo
-//$text = trim($text);
+$text = trim($text);
 //$text = strtolower($text);
 $array1 = array();
 
@@ -28,8 +28,15 @@ $response = "";
 
 if(isset($message['text']))
 {
+  $arr = explode("http", $text, 2);
+  $testoLink = $arr[0];
+  
+  $dominioAmazon = get_string_between($text, "://", ".it");
+  $dominioGearbest = get_string_between($text, "://", ".com");
+	
   //NUOVO PARSER:
   $text_url_array = parse_text($text);
+  	
   $array1 = explode('.', $text_url_array[1]);
   $dominio = $array1[1];
   //test url $string_test = var_export($array1, true);
@@ -38,7 +45,7 @@ if(isset($message['text']))
   {
 	$response = "Ciao $firstname! \nMandami un link Amazon o condividilo direttamente con me da altre app! \nTi rispondero' con il link affiliato del mio padrone! Grazie mille!\n\nCreated by http://www.webemento.com";
   }
-  elseif(strcmp($dominio,"amazon") === 0)
+  elseif(!empty($dominioAmazon))
   {	  
 	//new parser:
 	$url_to_parse = $text_url_array[1];
@@ -51,7 +58,7 @@ if(isset($message['text']))
 	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
   }
-   elseif(strcmp($dominio,"gearbest") === 0)
+   elseif(!empty($dominioGearbest))
    {
 	$url_to_parse = $text_url_array[1];
 	$url_affiliate = set_referral_URL_GB($url_to_parse);
@@ -122,6 +129,28 @@ function extract_unit($string, $start, $end){
 	$str_three = substr($str_two, 0, $second_pos);
 	$unit = trim($str_three); // remove whitespaces
 	return $unit;
+}
+function strbefore($string, $substring) {
+  $pos = strpos($string, $substring);
+  if ($pos === false)
+   return $string;
+  else  
+   return(substr($string, 0, $pos));
+}
+function strafter($string, $substring) {
+  $pos = strpos($string, $substring);
+  if ($pos === false)
+   return $string;
+  else  
+   return(substr($string, $pos+strlen($substring)));
+}
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
 }
 /*function get_string_between($string, $start, $end){
 	$string = ' ' . $string;

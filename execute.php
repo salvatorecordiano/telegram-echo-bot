@@ -57,7 +57,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $testoLink;
-	$response = "$obj_desc $url_affiliate"
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
 	
   }
    elseif($dominioGearbest == "gearbest")
@@ -69,7 +69,7 @@ if(isset($message['text']))
 	$pollicesym =  json_decode('"\uD83D\uDC4D"');
 	$worldsym = json_decode('"\uD83C\uDF0F"');
 	$obj_desc = $testoLink;
-	$response = "$obj_desc $url_affiliate";
+	$response = "Ecco fatto: $obj_desc\n$worldsym  $url_affiliate";
   
    }
    elseif(strpos($text, "/link") === 0 && strlen($text)<6 )

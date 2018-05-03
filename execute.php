@@ -171,6 +171,9 @@ function get_string_between($string, $start, $end){
 */
 
 header("Content-Type: application/json");
+$parameters1 = array('chat_id' => $chatId, "text" => $response);
+$parameters1["method"] = "sendMessage";
+echo json_encode($parameters1);
 $parameters = array('chat_id' => $chatId, "text" => $response);
 $parameters["method"] = "sendMessage";
 echo json_encode($parameters);

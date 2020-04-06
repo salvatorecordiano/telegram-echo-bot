@@ -1,6 +1,6 @@
 <?php
-$content = file_get_contents("php://input");
-$update = json_decode($content, true);
+$content = \file_get_contents("php://input");
+$update = \json_decode($content, true);
 
 if(!$update)
 {
@@ -16,10 +16,10 @@ $username = isset($message['chat']['username']) ? $message['chat']['username'] :
 $date = isset($message['date']) ? $message['date'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 
-$text = trim($text);
-$text = strtolower($text);
+$text = \trim($text);
+$text = \strtolower($text);
 
-header("Content-Type: application/json");
+\header("Content-Type: application/json");
 $parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
-echo json_encode($parameters);
+echo \json_encode($parameters);

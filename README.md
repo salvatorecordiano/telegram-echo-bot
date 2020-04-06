@@ -1,4 +1,4 @@
 # Telegram Echo Bot
 
-This is a sample Telegram Bot written in PHP running
+This is a sample Telegram Bot written in PHP
 

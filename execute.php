@@ -20,6 +20,5 @@ $text = \trim($text);
 $text = \strtolower($text);
 
 \header('Content-Type: application/json');
-$parameters = array('chat_id' => $chatId, "text" => $text);
-$parameters['method'] = "sendMessage";
+$parameters = array('chat_id' => $chatId, 'text' => $text, 'method' => 'sendMessage');
 echo \json_encode($parameters);

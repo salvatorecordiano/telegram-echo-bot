@@ -1,5 +1,5 @@
 <?php
-$content = \file_get_contents("php://input");
+$content = \file_get_contents('php://input');
 $update = \json_decode($content, true);
 
 if(!$update)
@@ -19,7 +19,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 $text = \trim($text);
 $text = \strtolower($text);
 
-\header("Content-Type: application/json");
+\header('Content-Type: application/json');
 $parameters = array('chat_id' => $chatId, "text" => $text);
 $parameters["method"] = "sendMessage";
 echo \json_encode($parameters);

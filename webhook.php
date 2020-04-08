@@ -1,7 +1,7 @@
 <?php
 
 // PARAMETRI DA MODIFICARE
-$WEBHOOK_URL = 'https://{PROJECT NAME}.000webhostapp.com/execute.php';
+$WEBHOOK_URL = 'https://{PROJECT NAME}.000webhostapp.com/webhook.php';
 $BOT_TOKEN = '{TOKEN}';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE

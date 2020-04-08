@@ -6,14 +6,14 @@ if(!$update) {
   exit;
 }
 
-$message = isset($update['message']) ? $update['message'] : "";
-$messageId = isset($message['message_id']) ? $message['message_id'] : "";
-$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
-$firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
-$lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
-$username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
-$date = isset($message['date']) ? $message['date'] : "";
-$text = isset($message['text']) ? $message['text'] : "";
+$message = isset($update['message']) ? $update['message'] : null;
+$messageId = isset($message['message_id']) ? $message['message_id'] : null;
+$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : null;
+$firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : null;
+$lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : null;
+$username = isset($message['chat']['username']) ? $message['chat']['username'] : null;
+$date = isset($message['date']) ? $message['date'] : null;
+$text = isset($message['text']) ? $message['text'] : null;
 
 $text = \trim($text);
 $text = \strtolower($text);
